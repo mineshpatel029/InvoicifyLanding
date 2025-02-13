@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import { Inter } from "next/font/google";
+
 
 export default {
   content: [
@@ -8,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Inter: ["var(--font-inter)", "sans-serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
