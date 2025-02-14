@@ -358,7 +358,7 @@ export default function Home() {
         </div>
       </section>
       <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center max-w-7xl">
           <div className="relative">
             <Image
               src="/Invoice.png"

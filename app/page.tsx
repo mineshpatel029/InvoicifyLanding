@@ -5,6 +5,12 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ArrowRight,
   Facebook,
   Instagram,
@@ -12,6 +18,8 @@ import {
   Section,
 } from "lucide-react";
 import { Users, Layers, Receipt, FileBarChart } from "lucide-react";
+import FAQSection from "@/components/faq-comp";
+import TestimonialSection from "@/components/testimonial-section";
 const services = [
   {
     icon: Users,
@@ -69,15 +77,17 @@ const testimonials = [
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
-    const nextSlide = () => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    };
-  
-    const prevSlide = () => {
-      setCurrentSlide(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-      );
-    };
+  const slidesPerView = 2;
+  const totalSlides = Math.ceil(testimonials.length / slidesPerView);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
   return (
     <>
       <section className="min-h-screen bg-white relative overflow-hidden">
@@ -358,8 +368,8 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <section className="container flex justify-center font-Inter mx-auto px-4 py-16 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center max-w-7xl">
           <div className="relative">
             <Image
               src="/Invoice.png"
@@ -378,7 +388,7 @@ export default function Home() {
 
             <div className="space-y-8">
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-emerald-500 flex items-center justify-center">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-400 flex items-center justify-center">
                   <span className="text-emerald-500 font-semibold">1</span>
                 </div>
                 <div>
@@ -392,7 +402,7 @@ export default function Home() {
               </div>
 
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-emerald-500 flex items-center justify-center">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-400 flex items-center justify-center">
                   <span className="text-emerald-500 font-semibold">2</span>
                 </div>
                 <div>
@@ -406,7 +416,7 @@ export default function Home() {
               </div>
 
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-emerald-500 flex items-center justify-center">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-gray-400 flex items-center justify-center">
                   <span className="text-emerald-500 font-semibold">3</span>
                 </div>
                 <div>
@@ -423,90 +433,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="py-16 px-4 bg-gray-100">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-lg font-medium text-gray-600 mb-2">
-            CLIENT TESTIMONIALS
-          </h2>
-          <h3 className="text-4xl font-bold text-gray-900 mb-12">
-            What our users are saying
-          </h3>
-
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {testimonials.map((testimonial) => (
-                  <div
-                    key={testimonial.id}
-                    className="w-full flex-shrink-0 px-4 "
-                  >
-                    <div className="bg-white rounded-lg p-8 shadow-sm border max-w-2xl mx-auto w-[475px]">
-                      <div className="flex items-center gap-3 mb-6">
-                        <Image
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          width={48}
-                          height={48}
-                          className="rounded-full"
-                        />
-                        <div className="text-left">
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-gray-600 text-sm">
-                            {testimonial.role}
-                          </p>
-                        </div>
-                        <div className="ml-auto">
-                          <p className="text-gray-500 text-sm">
-                            {testimonial.date}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="border-[1px] border-dashed "></div>
-                      <blockquote className="text-gray-700 text-lg text-left">
-                        "{testimonial.quote}"
-                      </blockquote>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white"
-              onClick={prevSlide}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white"
-              onClick={nextSlide}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentSlide ? "bg-emerald-500" : "bg-gray-300"
-                }`}
-                onClick={() => setCurrentSlide(index)}
-              />
-            ))}
-          </div>
-        </div>
+      <section className="py-16 px-4 font-Inter">
+        <TestimonialSection />
+      </section>
+      <section className="py-20">
+        <FAQSection />
       </section>
       <footer className="bg-emerald-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
