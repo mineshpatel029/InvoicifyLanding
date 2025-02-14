@@ -360,11 +360,11 @@ export default function Home() {
         <div className="max-w-7xl">
           <p>
             An
-            <span className="font-bold">ALL-in-ONE</span>
+            <span className="font-bold"> ALL-in-ONE </span>
             billing and business management
-            <span className="font-bold">solution,</span>
+            <span className="font-bold"> solution, </span>
             tailored to empower small and medium
-            <span className="font-bold">businesses.</span>
+            <span className="font-bold"> businesses. </span>
           </p>
         </div>
       </section>
@@ -439,9 +439,9 @@ export default function Home() {
       <section className="py-20">
         <FAQSection />
       </section>
-      <footer className="bg-emerald-50">
+      <footer className="bg-emerald-50 font-Inter">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="py-16 lg:py-24">
+          <div className="py-16 lg:py-24 ">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">
